@@ -1,29 +1,15 @@
 <template>
     <div class="wrapper">
-        <scroller class="scroller" @click="chooseChannel" scroll-direction="horizontal" flex-direction="row" loadmoreoffset="750px" show-scrollbar=false>
-            <div class="j-uline" :style="jLPosition" ref="jcLine"></div>
-            <text jact="true" class="i-c c-act" ref=actJC>推荐</text>
-            <text jact="true" class="i-c">限时购</text>
-            <text jact="true" class="i-c">新品</text>
-            <text jact="true" class="i-c">居家</text>
-            <text jact="true" class="i-c">餐厨</text>
-            <text jact="true" class="i-c">配件</text>
-            <text jact="true" class="i-c">服装</text>
-            <text jact="true" class="i-c">电器</text>
-            <text jact="true" class="i-c">洗护</text>
-            <text jact="true" class="i-c">杂货</text>
-            <text jact="true" class="i-c">饮食</text>
-            <text jact="true" class="i-c">婴童</text>
-            <text jact="true" class="i-c">志趣</text>
+        <scroller class="scroller"  scroll-direction="horizontal" flex-direction="row" loadmoreoffset="750px" show-scrollbar=false>
+            <text  :class="item.classList" v-for=" (item,index) in tag_list" @click="chooseChannel(index)">{{item.title}}</text>
+
         </scroller>
-        <text class="more iconfont">&#xe661;</text>
+        <text class="more iconfont">&#xe611;</text>
     </div>
 </template>
 <style scoped>
 
-    .iconfont {
-        font-family:iconfont;
-    }
+   
     .wrapper{
         position: fixed;
         top: 114px;
@@ -39,23 +25,20 @@
     }
     .i-c{
         padding-top:10px;
-        padding-left: 45px;
-        padding-right: 45px;
+        padding-left: 15px;
+        padding-right: 15px;
         padding-bottom:6px;
-        font-size: 26px;
+        margin-left: 30px;
+        margin-right: 30px;
         color:#333;
     }
     .c-act{
-        color:#b4282d;
+        color:rgb(16, 142, 233);
+        border-bottom-color: rgb(16, 142, 233);
+        border-bottom-style: solid;
+        border-bottom-width: 4px;
     }
-    .j-uline{
-        position: absolute;
-        left: 30px;
-        bottom: 0;
-        width: 82px;
-        height: 4px;
-        background-color: #b4282d;
-    }
+  
     .more{
         position: absolute;
         top:0;
@@ -65,7 +48,7 @@
         background-color: #fafafa;
         text-align: center;
         padding-top: 10px;
-        opacity: 0.96;
+        opacity: 0.9;
         box-shadow:-6px -4px 4px #fafafa;
     }
 </style>
@@ -76,37 +59,37 @@
     export default {
         data () {
             return {
-                jLPosition:"left:30px;width:82px;"
+                tag_list:[
+                   { title:'全部',classList : ['i-c', 'c-act']},
+                   { title:'BAT',classList : ['i-c']},
+                   { title:'前端',classList : ['i-c']},
+                   { title:'后端',classList : ['i-c']},
+                   { title:'Android',classList : ['i-c']},
+                   { title:'IOS',classList : ['i-c']},
+                   { title:'测试',classList : ['i-c']},
+                    { title:'算法',classList : ['i-c']},
+                   { title:'人工智能',classList : ['i-c']},
+                   { title:'计算机视觉',classList : ['i-c']},
+                   { title:'Node',classList : ['i-c']},
+                   { title:'Java',classList : ['i-c']},
+                   { title:'Go',classList : ['i-c']},
+                   { title:'Python',classList : ['i-c']},
+                   { title:'PHP',classList : ['i-c']},
+                   { title:'Ruby',classList : ['i-c']},
+                   { title:'Linux',classList : ['i-c']},
+                   { title:'数据',classList : ['i-c']},
+                   { title:'  ',classList : ['i-c']},
+
+                ]
             }
         },
-        mounted () {
-//            this.initJLine();
-        },
         methods: {
-            initJLine:function () {
-                if(!this.$refs.actJC) return;
-//                let l = this.$refs.actJC.$el.offsetLeft;
-//                let w = this.$refs.actJC.$el.offsetWidth;
-//                this.jLPosition = ["left:",l+30,"px;","width:",w-60,"px;"].join("");
-            },
-
-            chooseChannel:function (event) {
-                const _target = event.target;
-//                console.log(_target);
-//                if(_target.dataset.act !== "j-c") return;
-                let l = _target.offsetLeft || 0;
-                let w =  _target.offsetWidth || 0;
-                if(w<=0) return;
-//                this.jLPosition = ["left:",l+30,"px;","width:",w-60,"px;"].join("");
-                animation.transition(this.$refs.jcLine, {
-                    styles: {
-                        left : l+30+"px",
-                        width : w-60+"px"
-                    },
-                    duration: 300, //ms
-                    timingFunction: 'ease',
-                    delay: 0 //ms
-                }, function () {});
+            chooseChannel: function (index) {
+                    this.tag_list.forEach((e) =>{
+                            e.classList= ['i-c'];
+                    })
+                    this.tag_list[index].classList.push('c-act');
+                    this.$emit('changeEvent',this.tag_list[index].title);
             }
         }
     }

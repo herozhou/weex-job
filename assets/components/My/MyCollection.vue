@@ -1,8 +1,8 @@
 <template>
     <div >
-        <home-header v-on:inputEvent="inputSearch"></home-header>
+        <header2  title="我的收藏"></header2>
+
         <top-channel v-on:changeEvent="changeTab"></top-channel>
-        <!-- <top-channel></top-channel> -->
         <div class="content">
         <list class="list" >
             <cell class="cell" v-for="job_item in show_job_list">
@@ -20,8 +20,7 @@
 </template>
 <style scoped>
      .panel {
-        width: 700px;
-    height: 130px;
+    height: 140px;
     margin: 15px;
     flex-direction: column;
     justify-content: center;
@@ -52,7 +51,7 @@
 
 .content{
     margin-top: 200px;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
 }
   .button {
     width: 700px;
@@ -73,8 +72,8 @@
 </style>
 
 <script>
- import Header from '../components/Header.vue';
-    import topChannel from '../components/topChannel.vue';
+    import topChannel from '../topChannel.vue';
+    import Header2 from '../Header2.vue';
 
      const modal = weex.requireModule('modal')
      const stream = weex.requireModule('stream')
@@ -82,10 +81,8 @@
 
   export default {
       components: {
-            'home-header': Header,
             'top-channel': topChannel,
-
-
+            'header2': Header2,
         },
     data () {
       return {
@@ -110,11 +107,13 @@
           const total_length = this.all_job_list.length;
 
           const tag = this.tag;
+          console.log('this.now_index'+this.now_index  )
           for (let i = this.now_index + 1,j = 0; j < LOADMORE_COUNT  && i < total_length ; ++i) {
             let list_item = this.all_job_list[i]
             if(list_item.job_tag.indexOf(tag)!==-1 || tag==="全部") {
                 j++;
                 this.show_job_list.push(list_item);
+                console.log(i)
             }
             this.now_index = i;
           }
@@ -125,14 +124,6 @@
 
        
       },
-
-       getJobList (api,callback) {
-        return stream.fetch({
-          method: 'GET',
-          type: 'json',
-          url: 'http://192.168.43.75:8880'+api
-        }, callback)
-      },
       jumpTo(id){
         this.$router.push('job_detail/'+id)
       },
@@ -141,20 +132,14 @@
         this.tag=tag;
         this.loadmore('changeTab');
       },
-      inputSearch(tag){
-         console.log(tag)
-         this.tag=tag;
-         this.loadmore('changeTab');
-      }
     },
      created () {
-      this.getJobList('/job_list', res => {
-        this.all_job_list = res.ok ? res.data : '(network error)'
+     
+          const collection = this.$store.getters.getUserInfo.collection;
+       this.all_job_list=   collection;
 
-          this.$store.dispatch('setJobList', this.all_job_list)
-          console.log(this.$store.getters.getJobList)
         this.loadmore();
-      })
+      
     }
 
   }

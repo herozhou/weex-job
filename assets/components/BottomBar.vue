@@ -1,88 +1,17 @@
 <template>
-    <div>
-         <div class="login" :class="{'active':active}" v-show="login">
-        <div class="head">
-          <text class="h2">闲鱼赚钱指南</text>
-          <div class="navbar">
-                <div class="title-link">
-                    <a href="">
-                       <text class="titlename">卖什么更赚</text>
-                       <text class="tip">教你卖什更赚钱</text>
-
-                    </a>
-                </div>
-
-                 <div class="title-link">
-                    <a href="">
-                       <text class="titlename">拍照相机</text>
-                       <text class="tip">看看家里的东西值多少钱</text>
-                    </a>
-                </div>
-
-
-                 <div class="title-link">
-                    <a href="">
-                       <text class="titlename">淘宝一键转卖</text>
-                       <text class="tip">剁手多了回回血</text>
-                    </a>
-                </div>
-          </div>
-        </div>
-        <div class="content">
-                    <div class="recomlist" >
-                    <div class="recomlist-type" >
-
-                      <text class="bar-ic iconfont">&#xe679;</text>
-                      <text class="explain">卖闲置</text>
-
-                      </div>
-                    <div  class="recomlist-type">
-                        
-                      <text class="bar-ic iconfont">&#xe673;</text>
-
-                      <text class="explain">出租房屋</text>
-                    </div>
-                    <div  class="recomlist-type ">
-                      <text class="bar-ic iconfont">&#xe91e;</text>
-
-                      <text class="explain">发布服务</text>
-                    </div>
-                </div>
-                  <div class="footer">
-                      <text class="bar-ic iconfont" @click="change3">&#xe91e;</text>
-             
-                     </div>
-        </div>
-
-      
-    
-      </div>
+ 
     <div class="wrapper">
-        <!--<div v-for="i in items">-->
-            <!--<div class="bar-item" @click="tabTo(i.key)">-->
-                <!--<text class="bar-ic iconfont">{{i.icon}}</text>-->
-                <!--<text class="bar-txt">{{i.name}}</text>-->
-            <!--</div>-->
-        <!--</div>-->
-
         <div class="bar-item" @click="tabTo('home')">
             <text class="bar-ic iconfont" :style="testCS">&#xe665;</text>
             <text class="bar-txt">首页</text>
         </div>
-        <div class="bar-item" @click="tabTo('topic')">
+        <div class="bar-item" @click="tabTo('community')">
             <text class="bar-ic iconfont">&#xe679;</text>
-            <text class="bar-txt">鱼塘</text>
-        </div>
-        <div class="bar-item act" @click="change1" >
-          <div style="margin-top:-30px;margin-bottom:8px;">
-            <text class="bar-ic iconfont" style="font-size:40px;color:#ffda44;">&#xe62b;</text>
-            
-          </div>
-            <text class="bar-txt">添加</text>
+            <text class="bar-txt">社区</text>
         </div>
         
 
-        <div class="bar-item" @click="tabTo('shop')">
+        <div class="bar-item" @click="tabTo('notice')">
             <text class="bar-ic iconfont" >&#xe69d;</text>
 
             <text class="bar-txt">消息</text>
@@ -92,8 +21,6 @@
             <text class="bar-txt">个人</text>
         </div>
     </div>
-    </div>
-
 </template>
 <style scoped>
     .iconfont {

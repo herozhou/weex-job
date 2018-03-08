@@ -8,28 +8,22 @@
     body{
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background-color: white;
         color:#333;
     }
-</style>
-<style scoped>
-    .app-wrapper{
-        background-color: #f4f4f4;
-    }
-    .r-box{
-        position: absolute;
-        top:0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+
+ .iconfont {
+        font-family:iconfont;
     }
 
+    .weex-text{
+        font-size: 15px;
+    }
 </style>
 
 <script>
     var modal = weex.requireModule('modal');
     import util from './assets/util';
-    // import tabBar from '../assets/components/tabBar.vue';
     import BottomBar from '../assets/components/BottomBar.vue';
 
     export default {

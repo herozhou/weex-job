@@ -7,6 +7,7 @@ import store from './store'
 import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 import mixins from './mixins'
+import user from './user'
 
 // const meta = weex.requireModule('meta');
 
@@ -33,4 +34,5 @@ Vue.mixin(mixins)
 // making them available everywhere as `this.$router` and `this.$store`.
 new Vue(Vue.util.extend({ el: '#root', router, store }, App));
 
-router.push('/');
+
+

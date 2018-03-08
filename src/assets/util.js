@@ -7,7 +7,7 @@ let utilFunc = {
         let domModule = weex.requireModule('dom');
         domModule.addRule('fontFace', {
             'fontFamily': "iconfont",
-            'src': "url('http://at.alicdn.com/t/font_426094_wezclb30gujtt9.ttf')"
+            'src': "url('http://at.alicdn.com/t/font_426094_y7cbcgsf0ak5u3di.ttf')"
         });
     },
     setBundleUrl(url, jsFile) {
@@ -62,6 +62,14 @@ let utilFunc = {
             }
         }
         return null;
+    },
+     validateEmail(str) {
+        const reg = /^[a-z0-9](?:[-_.+]?[a-z0-9]+)*@\w.com$/i;
+        return reg.test(str.trim());
+    },
+      validatePassword(str) {
+        const reg = /^(\w){6,20}$/;
+        return reg.test(str.trim());
     }
 };
 

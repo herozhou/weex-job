@@ -1,0 +1,1 @@
+var obj = { '{"_id":"59d6ff442e3469ba4d6a615e","id":"000001","user_name":"herozhou","login_time":"2017.10.5","collection":[{"_id":"59d60c1ce919b44c2bed2133","title":"[上海德资互联网] 金风玉露，你胜却人间无数。Android 开发实习僧，转正机会、诱人福利待你来探！另有 HR 实习机会同步招聘中...","website":"v2ex","href":"https://www.v2ex.com/t/391685#reply14","id":"391685","job_tag":["Android"],"position_tag":["上海"]}]}': '' }
